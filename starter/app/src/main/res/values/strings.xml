@@ -7,6 +7,17 @@
     <string name="register">Register</string>
     <string name="logout">Logout</string>
     <string name="next">Next</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
     <string name="go_to_home">Go to home</string>
     <string name="welcome_shoe_store">Welcome to ShoeStore</string>
+    <string name="shoe_name">Name</string>
+    <string name="size">Size</string>
+    <string name="company">Company Name</string>
+    <string name="Description">Description</string>
+    <string name="display_name">Name: %s</string>
+    <string name="display_description">Description: %s</string>
+    <string name="display_size">Size: %s</string>
+    <string name="display_company">Company: %s</string>
+    <string name="instruction"><b>How to create a new shoe:</b>\n1. Go to shoes listing\n2. Click on floating `Add button` to go to create screen.\n3. Fill your new shoe info into the screen.\n4. Confirm your action and create a new shoe by clicking `Create` button</string>
 </resources>

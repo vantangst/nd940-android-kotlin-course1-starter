@@ -3,38 +3,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.create.CreateShoeFragment">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/main_padding"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/shoes_logo"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:text="@string/app_name"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_shoe_store"/>
-
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_marginTop="@dimen/spacing_24"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next"/>
+            android:padding="@dimen/main_padding"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shoe_name"/>
+
+            <EditText
+                android:id="@+id/etShoeName"
+                android:text="@={shoe.name}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company"/>
+
+            <EditText
+                android:id="@+id/etCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={shoe.company}"
+                android:imeOptions="actionNext"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/size"/>
+
+            <EditText
+                android:id="@+id/etSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={shoe.size + ``}"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionNext"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Description"/>
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={shoe.description}"
+                android:imeOptions="actionDone"/>
+
+            <Button
+                android:id="@+id/btnCreate"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/GreenButton"
+                android:text="@string/create"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/GreenButtonBorder"
+                android:text="@string/cancel"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </layout>

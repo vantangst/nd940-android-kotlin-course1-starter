@@ -7,13 +7,18 @@ import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListingBinding
+import com.udacity.shoestore.ui.main.MainViewModel
 
 class ShoeListingFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeListingBinding
+    private val mainViewModel by lazy {
+        ViewModelProvider(requireActivity())[MainViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +33,17 @@ class ShoeListingFragment : Fragment() {
         )
         setupMenu()
         setupUI()
+        setupObserver()
         return binding.root
+    }
+
+    private fun setupObserver() {
+        mainViewModel.shoeListLiveData.observe(viewLifecycleOwner) { shoes ->
+            binding.llShoes.removeAllViews()
+            shoes.forEach { shoe ->
+                binding.llShoes.addView(ShoeItem(requireContext()).bindData(shoe))
+            }
+        }
     }
 
     private fun setupUI() {
@@ -48,12 +63,18 @@ class ShoeListingFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.actionLogout -> {
-                        // TODO logout
+                        logout()
                         true
                     }
                     else -> false
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun logout() {
+        mainViewModel.logout()
+        val action = ShoeListingFragmentDirections.actionShoeListingFragmentToLoginFragment()
+        findNavController().navigate(action)
     }
 }
